@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quiz1</title>
+  <title>Quiz1 - Supporter</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<a href="/">Home</a> |
+<%= link_to "New Request", new_request_path %> | 
+<%= link_to "All Requests", requests_path %>
 
 <%= yield %>
 

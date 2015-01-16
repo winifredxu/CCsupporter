@@ -1,0 +1,24 @@
+
+<table border=1>
+<tr>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Department</th>
+	<th>Message</th>
+	<th>Action</th>
+</tr>
+
+<tr>
+	<th><%= @request.name %></th>
+	<th><a href="mailto:<%= @request.email %>"><%= @request.email %></th>
+	<th><%= @request.dept %></th>
+	<th><%= @request.body %></th>
+</tr>
+
+</table>
+
+<%= link_to "Edit", edit_request_path(@request) %>
+<%= link_to "Delete", 
+	request_path(@request), 
+	method: :delete, 
+	data: {confirm: "are you sure?"} %>

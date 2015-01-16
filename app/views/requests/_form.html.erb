@@ -1,0 +1,32 @@
+<% if @request.errors.any? %>
+	<ul>
+	<% @request.errors.full_messages.each do |req| %>
+		<li><%= req %></li>
+	<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @request do |f| %>
+<%= f.label :name %>*
+<%= f.text_field :name %>
+<p></p>
+<%= f.label :email %>*
+<%= f.text_field :email %>
+<p></p>
+
+<%#= f.label :dept %>     <!--to change the label display text -->
+<%= f.label "Department" %>  
+
+<%= f.radio_button :dept, "Sales" %> Sales
+<%= f.radio_button :dept, "Marketing", :checked => true %> Marketing
+<%= f.radio_button :dept, "Technical" %> Technical
+<p></p>
+
+<%= f.label "Message" %>
+<%= f.text_area :body %>
+<p></p>
+
+<%= f.submit value: "Save"%>
+
+
+<% end %>

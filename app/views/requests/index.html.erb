@@ -1,0 +1,26 @@
+<h1>List All requests </h1>
+
+<h2>all requests in 'name ASC' order</h2>
+
+<table border="1" border-color=#cccccc>
+<tr>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Department</th>
+	<th>Message</th>
+	<th>Action</th>
+</tr>
+
+
+<% @entire_requests.each do |q| %>
+<tr>
+	<th><%= link_to q.name, request_path(q) %></th>
+	<th><%= link_to q.email, request_path(q) %></th>
+	<th><%= link_to q.dept, request_path(q) %></th>
+	<th><%= q.body %></th>
+	<th></th>
+</tr>
+<% end %>
+
+
+</table>
