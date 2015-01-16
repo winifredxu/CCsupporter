@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  post "/requests/:id/done" => "requests#done", as: :done_request
+ # post "/requests/:id/done" => "requests#done", as: :done_request
   resources :requests
 
    root 'requests#index'
