@@ -1,14 +1,12 @@
-<h1>List All requests </h1>
+<h2>all requests in 'Done then Not Done' order</h2><p></p>
 
-<h2>all requests in 'name ASC' order</h2>
-
-<table border="1" border-color=#cccccc>
+<table border=1 border-color=#cccccc>
 <tr>
 	<th>Name</th>
 	<th>Email</th>
 	<th>Department</th>
 	<th>Message</th>
-	<th>Action</th>
+	<th>Actions</th>
 </tr>
 
 
@@ -18,9 +16,25 @@
 	<th><%= link_to q.email, request_path(q) %></th>
 	<th><%= link_to q.dept, request_path(q) %></th>
 	<th><%= q.body %></th>
-	<th></th>
+	<th><form action="/" method="post">
+		  <button><%= link_to "Edit", edit_request_path(q) %></button>  
+			<button><%= link_to "Delete", 
+				request_path(q), 
+				method: :delete, 
+				data: {confirm: "are you sure?"} %></button>
+			<button><% if q.actions %>
+								<%="Done" %>
+							<% else %>
+								<%="Not Done" %>
+							<% end %>
+
+							<% q.actions = false || q.actions %>
+			</button>
+			</form>
+	</th>
+
 </tr>
 <% end %>
+</table><p></p>
 
-
-</table>
+<button><%= link_to "New Request", new_request_path %></button>

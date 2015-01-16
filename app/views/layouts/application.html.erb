@@ -7,11 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<a href="/">Home</a> |
-<%= link_to "New Request", new_request_path %> | 
-<%= link_to "All Requests", requests_path %>
-
+<h1><%= link_to "Support Requests", requests_path %></h1>
+<p></p>
 <%= yield %>
 
 </body>

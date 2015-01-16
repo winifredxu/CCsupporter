@@ -5,7 +5,7 @@
 	<th>Email</th>
 	<th>Department</th>
 	<th>Message</th>
-	<th>Action</th>
+	<th>Actions</th>
 </tr>
 
 <tr>
@@ -13,12 +13,23 @@
 	<th><a href="mailto:<%= @request.email %>"><%= @request.email %></th>
 	<th><%= @request.dept %></th>
 	<th><%= @request.body %></th>
+	<th><button><%= link_to "Edit", edit_request_path(@request) %></button>  
+			<button><%= link_to "Delete", 
+				request_path(@request), 
+				method: :delete, 
+				data: {confirm: "are you sure?"} %></button> 
+			<button><% if @request.actions %>
+								<%="Done" %>
+							<% else %>
+								<%="Not Done" %>
+							<% end %>
+
+							<% @request.actions = false || @request.actions %>
+			</button>
+				
+	</th>
 </tr>
 
 </table>
 
-<%= link_to "Edit", edit_request_path(@request) %>
-<%= link_to "Delete", 
-	request_path(@request), 
-	method: :delete, 
-	data: {confirm: "are you sure?"} %>
+

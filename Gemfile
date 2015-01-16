@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'thin'  #this requires the web server to be Thin, only works for Thin though
 gem 'bootstrap-sass'  # this is to include using 'bootstrap' CSS
+gem 'bootswatch-rails'
+gem 'autoprefixer-rails'
+gem 'therubyracer', platforms: :ruby
+
 group :development do 
         gem "colorize"
         gem "interactive_editor"

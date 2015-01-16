@@ -1,8 +1,8 @@
 class RequestsController < ApplicationController
-	before_action:find_request, only: [:show, :edit, :update, :destroy] 
+	before_action:find_request, only: [:show, :edit, :update, :destroy, :done] 
 
-	def index
-		@entire_requests = Request.all.order('name ASC')		
+	def index #list all requests, ordered by actions == DONE first
+		@entire_requests = Request.all.order('actions DESC')		
 	end
 
 	def new
@@ -39,6 +39,13 @@ class RequestsController < ApplicationController
 		redirect_to requests_path
 	end
 
+
+	def done
+		#uses find_request to access the @request
+		# toggles between the "done" and "not done" states
+		@request.actions = false || @request.actions
+		redirect_to requests_path
+	end
 
 	private
 
