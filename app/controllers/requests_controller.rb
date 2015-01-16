@@ -1,8 +1,10 @@
 class RequestsController < ApplicationController
-	before_action:find_request, only: [:show, :edit, :update, :destroy, :done] 
+	before_action:find_request, only: [:show, :edit, :update, :destroy] 
 
 	def index #list all requests, ordered by actions == DONE first
 		@entire_requests = Request.all.order('actions DESC')		
+		# add pagination for "5" entries per page to be shown  
+#		@entire_requests = @entire_requests.paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def new
@@ -39,13 +41,13 @@ class RequestsController < ApplicationController
 		redirect_to requests_path
 	end
 
-
-	def done
+#
+#	def done
 		#uses find_request to access the @request
 		# toggles between the "done" and "not done" states
-		@request.actions = false || @request.actions
-		redirect_to requests_path
-	end
+	
+#		redirect_to requests_path
+#	end
 
 	private
 
@@ -56,7 +58,7 @@ class RequestsController < ApplicationController
 	# request params sanitization
 	def params_request_sanitized
 		# use strong params to ensure only the fields explicitly stated are allowed
-		params.require(:request).permit([:name, :email, :dept, :body])
+		params.require(:request).permit([:name, :email, :dept, :body, :actions])
 	end
 
 end

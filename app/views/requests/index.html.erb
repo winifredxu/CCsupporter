@@ -16,25 +16,27 @@
 	<th><%= link_to q.email, request_path(q) %></th>
 	<th><%= link_to q.dept, request_path(q) %></th>
 	<th><%= q.body %></th>
-	<th><form action="/" method="post">
-		  <button><%= link_to "Edit", edit_request_path(q) %></button>  
+	<th><button><%= link_to "Edit", edit_request_path(q) %></button>  
 			<button><%= link_to "Delete", 
 				request_path(q), 
 				method: :delete, 
 				data: {confirm: "are you sure?"} %></button>
-			<button><% if q.actions %>
-								<%="Done" %>
-							<% else %>
-								<%="Not Done" %>
-							<% end %>
 
-							<% q.actions = false || q.actions %>
-			</button>
-			</form>
+				<%= form_for q do |f| %>
+				<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
+				<% if q.actions %>
+					<input type="hidden" name="request[actions]" value="false">
+					<%= f.submit "Done" %>
+				<% else %>
+					<input type="hidden" name="request[actions]" value="true">
+					<%= f.submit "Not Done" %>
+				<% end %>
+
+			<% end %>
 	</th>
 
 </tr>
 <% end %>
 </table><p></p>
-
+<%#= will_paginate @posts %><p></p>
 <button><%= link_to "New Request", new_request_path %></button>

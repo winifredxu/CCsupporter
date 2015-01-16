@@ -18,14 +18,18 @@
 				request_path(@request), 
 				method: :delete, 
 				data: {confirm: "are you sure?"} %></button> 
-			<button><% if @request.actions %>
-								<%="Done" %>
-							<% else %>
-								<%="Not Done" %>
-							<% end %>
 
-							<% @request.actions = false || @request.actions %>
-			</button>
+				<%= form_for @request do |f| %>
+				<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
+				<% if @request.actions %>
+					<input type="hidden" name="request[actions]" value="false">
+					<%= f.submit "Done" %>
+				<% else %>
+					<input type="hidden" name="request[actions]" value="true">
+					<%= f.submit "Not Done" %>
+				<% end %>
+
+			<% end %>			
 				
 	</th>
 </tr>

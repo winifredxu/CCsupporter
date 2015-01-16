@@ -37,6 +37,7 @@ gem 'bootstrap-sass'  # this is to include using 'bootstrap' CSS
 gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
+gem 'will_paginate'
 
 group :development do 
         gem "colorize"
