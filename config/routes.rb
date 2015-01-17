@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get "/requests/:id/search" => "requests#search", as: :search_request
+#  get "/requests/search" => "requests#search", as: :search_requests
   patch "/requests/:id/done" => "requests#done", as: :done_request
   resources :requests
 
