@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
 
 	def index #list all requests, ordered by actions == NOT DONE first
 		@entire_requests = Request.all.order('actions ASC')	
-			
+
 		# add pagination for "5" entries per page to be shown  
 		@entire_requests = @entire_requests.paginate(:page => params[:page], :per_page => 5)
 	end
@@ -47,7 +47,11 @@ class RequestsController < ApplicationController
 		#toggles between the "done" and "not done" states
 		@request.actions = !@request.actions
 		if @request.save
-			redirect_to requests_path
+
+			#redirect_to requests_path
+			# to paginate to the exact same page as before
+			redirect_to :back
+
 		else
 			redirect_to requests_path, notice: "error on saving Actions state"
 		end
