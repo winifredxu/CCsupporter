@@ -6,13 +6,13 @@ class RequestsController < ApplicationController
 		# if we came via a valid param[:search_q]
 		if params[:search_q]
 			search_str = "%#{params[:search_q]}%"
-			@entire_requests = Request.where("name LIKE ? OR email LIKE ? OR dept LIKE ? OR body LIKE ?", search_str, search_str, search_str, search_str).order('actions ASC')
+			@entire_requests = Request.where("name LIKE ? OR email LIKE ? OR dept LIKE ? OR body LIKE ?", search_str, search_str, search_str, search_str)
 		else # show ALL requests in the DB ordered by actions == NOT DONE first
-			@entire_requests = Request.all.order('actions ASC')	
+			@entire_requests = Request.all
 		end
 
 		# add pagination for "5" entries per page to be shown  
-		@entire_requests = @entire_requests.paginate(:page => params[:page], :per_page => 5)
+		@entire_requests = @entire_requests.order('actions ASC').paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def new
@@ -65,12 +65,9 @@ class RequestsController < ApplicationController
 	end
 
 	def search
-
-
 		#just trying to see if the routes.rb to 'search' method in the controller is working properly:     
 		#render plain: "hello world"
 		render text: params
-
 	end
 
 

@@ -12,7 +12,7 @@
 		<th><a href="mailto:<%= @request.email %>"><%= @request.email %></th>
 		<th><%= @request.dept %></th>
 		<th><%= @request.body %></th>
-		<th><%=render partial: "buttons", locals: {local_q: @request} %></th>
+		<th><%= render partial: "buttons", locals: {local_q: @request} %></th>
 	</tr>
 
 </table>

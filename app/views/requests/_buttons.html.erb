@@ -1,0 +1,25 @@
+<!-- change button with link "Edit" to use button_to url helper --> 
+<!-- <button><%#= link_to "Edit", edit_request_path(local_q %></button> -->
+<%= button_to "Edit", edit_request_path(local_q), method: :get %>
+
+<!-- change button with link "Delete" to use button_to url helper -->
+<!-- <button><%#= link_to "Delete", request_path(local_q, method: :delete, data: {confirm: "are you sure?"} %></button> -->
+<%= button_to "Delete", request_path(local_q), method: :delete, data: {confirm: "are you sure to delete for real?"} %>
+
+<!-- add a new route to use the DONE controller method in form_for helper -->
+<%= button_to (local_q.actions ? "Done" : "Not Done"), done_request_path(local_q), method: :patch %>
+
+
+<%#= form_for local_q, url: done_request_path(local_q), method: "patch" do |f| %>
+	<!-- replace the bottom explicit <input type="hidden"> with the one line below -->
+	<%#= f.submit local_q.actions ? "Done" : "Not Done" %>
+	
+<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
+	<%# if local_q.actions %>
+		<!--input type="hidden" name="request[actions]" value="false"-->
+		<%#= f.submit "Done" %>
+	<%# else %>
+		<!--input type="hidden" name="request[actions]" value="true"-->
+		<%#= f.submit "Not Done" %>
+	<%# end %>
+<%# end %>
