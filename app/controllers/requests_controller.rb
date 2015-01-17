@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-	before_action:find_request, only: [:show, :edit, :update, :destroy] 
+	before_action:find_request, only: [:show, :edit, :update, :destroy, :done, :search] 
 
 	def index #list all requests, ordered by actions == NOT DONE first
 		@entire_requests = Request.all.order('actions ASC')		
@@ -41,13 +41,21 @@ class RequestsController < ApplicationController
 		redirect_to requests_path
 	end
 
-#
-#	def done
+	def done
 		#uses find_request to access the @request
-		# toggles between the "done" and "not done" states
-	
-#		redirect_to requests_path
-#	end
+		#toggles between the "done" and "not done" states
+		@request.actions = !@request.actions
+		if @request.save
+			redirect_to requests_path
+		else
+			redirect_to requests_path, notice: "error on saving Actions state"
+		end
+	end
+
+	def search
+
+	end
+
 
 	private
 

@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
- <!-- thanks to Tyler's tip -->
+ <!-- thanks to Tyler's tip about inline-block because form has it's own container -->
   <style> 
   	form {  display: inline-block; }
   </style>
@@ -17,7 +17,7 @@
 <ul class="nav nav-pills">
   <li role="presentation"><%= link_to "Home", requests_path %></li>
   <li role="presentation"><%= link_to "New request", new_request_path %></li>
-  <li role="presentation"><%= link_to "Index all requests", requests_path %></li>
+  <li role="presentation"><%= link_to "All requests", requests_path %></li>
 </ul>
 
 <%= yield %>

@@ -27,6 +27,17 @@
 <%= f.radio_button :dept, "Technical" %> Technical
 
 <p></p>
+<hr> <!-- trying out the radio_button_tag form helper instead below: -->
+<!--
+<%= label("request[dept]", "Department") %> 
+<%= radio_button_tag("request[dept]", "Sales") %>
+<%= label_tag(:dept, "Sales") %>
+<%= radio_button_tag("request[dept]", "Marketing") %>
+<%= label_tag(:dept, "Marketing") %>
+<%= radio_button_tag("request[dept]", "Technical", true) %>
+<%= label_tag(:dept, "Technical") %>
+
+-->
 
 <div class="form-group">
 <%= f.label "Message" %>
