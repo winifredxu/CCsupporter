@@ -27,9 +27,11 @@
 				<% if q.actions %>
 					<input type="hidden" name="request[actions]" value="false">
 					<%= f.submit "Done" %>
+				
 				<% else %>
 					<input type="hidden" name="request[actions]" value="true">
 					<%= f.submit "Not Done" %>
+					
 				<% end %>
 
 			<% end %>
