@@ -47,14 +47,14 @@ class RequestsController < ApplicationController
 		#toggles between the "done" and "not done" states
 		@request.actions = !@request.actions
 		if @request.save
-
 			#redirect_to requests_path
-			# to paginate to the exact same page as before
-			redirect_to :back
 
+			# :back allows to paginate to the exact same page as before
+			redirect_to :back
 		else
 			redirect_to requests_path, notice: "error on saving Actions state"
 		end
+
 	end
 
 	def search

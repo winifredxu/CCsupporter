@@ -15,27 +15,9 @@
 			<th><%= link_to q.email, request_path(q) %></th>
 			<th><%= link_to q.dept, request_path(q) %></th>
 			<th><%= q.body %></th>
-			<th><button><%= link_to "Edit", edit_request_path(q) %></button>  
-					<button><%= link_to "Delete", 
-												request_path(q), 
-												method: :delete, 
-												data: {confirm: "are you sure?"} %>
-					</button>
-
-					<!-- add a new route to use the DONE controller method in form_for helper -->
-					<%= form_for q, url: done_request_path(q), method: "patch" do |f| %>
-					<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
-
-						<!-- replace the bottom explicit <input type="hidden"> with the one line below -->
-						<%= f.submit q.actions ? "Done" : "Not Done" %>
-						<%# if q.actions %>
-							<!--input type="hidden" name="request[actions]" value="false"-->
-							<%#= f.submit "Done" %>
-						<%# else %>
-							<!--input type="hidden" name="request[actions]" value="true"-->
-							<%#= f.submit "Not Done" %>
-						<%# end %>
-					<% end %>
+			<th> 
+				<!-- render a partial _buttons.html.erb here for the 3 buttons shared with 'show' view -->
+				<%= render partial: "buttons", locals: {local_q: q} %>
 			</th>
  
 		</tr>
