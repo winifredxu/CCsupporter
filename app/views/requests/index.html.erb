@@ -1,60 +1,49 @@
 <div class="table-responsive">
-<table class="table table-striped table-bordered table-hover" width="80%">
-<tr>
-	<%= form_tag("/search", method: "get") do %>
-  	<%= label_tag(:q, "Search for:") %>
-  	<%= text_field_tag(:q) %>
-  	<%= submit_tag("Search") %>
-	<% end %>	
+	<table class="table table-striped table-bordered table-hover" width="80%">
 
-</tr>
-<tr>
-	<th>Name</th>
-	<th>Email</th>
-	<th>Department</th>
-	<th>Message</th>
-	<th>Actions</th>
-</tr>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Department</th>
+			<th>Message</th>
+			<th>Actions</th>
+		</tr>
 
+		<% @entire_requests.each do |q| %>
+		<tr>
+			<th><%= link_to q.name, request_path(q) %></th>
+			<th><%= link_to q.email, request_path(q) %></th>
+			<th><%= link_to q.dept, request_path(q) %></th>
+			<th><%= q.body %></th>
+			<th><button><%= link_to "Edit", edit_request_path(q) %></button>  
+					<button><%= link_to "Delete", 
+												request_path(q), 
+												method: :delete, 
+												data: {confirm: "are you sure?"} %>
+					</button>
 
-<% @entire_requests.each do |q| %>
-<tr>
-	<th><%= link_to q.name, request_path(q) %></th>
-	<th><%= link_to q.email, request_path(q) %></th>
-	<th><%= link_to q.dept, request_path(q) %></th>
-	<th><%= q.body %></th>
-	<th><button><%= link_to "Edit", edit_request_path(q) %></button>  
-			<button><%= link_to "Delete", 
-				request_path(q), 
-				method: :delete, 
-				data: {confirm: "are you sure?"} %></button>
+					<!-- add a new route to use the DONE controller method in form_for helper -->
+					<%= form_for q, url: done_request_path(q), method: "patch" do |f| %>
+					<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
 
+						<!-- replace the bottom explicit <input type="hidden"> with the one line below -->
+						<%= f.submit q.actions ? "Done" : "Not Done" %>
+						<%# if q.actions %>
+							<!--input type="hidden" name="request[actions]" value="false"-->
+							<%#= f.submit "Done" %>
+						<%# else %>
+							<!--input type="hidden" name="request[actions]" value="true"-->
+							<%#= f.submit "Not Done" %>
+						<%# end %>
+					<% end %>
+			</th>
+ 
+		</tr>
+		<% end %>
+	</table>
+</div>
 
-		
-
-
-<!-- add a new route to use the DONE controller method in form_for helper -->
-				<%= form_for q, url: done_request_path(q), method: "patch" do |f| %>
-				<!-- we are using the IF statement to submit the OPPOSITE value to the update method to change the request.actions field value -->
-
-				<%= f.submit q.actions ? "Done" : "Not Done" %>
-
-<!-- replace the bottom explicit <input type="hidden"> with the one line above-->
-				<%# if q.actions %>
-					<!--input type="hidden" name="request[actions]" value="false"-->
-					<%#= f.submit "Done" %>
-				<%# else %>
-					<!--input type="hidden" name="request[actions]" value="true"-->
-					<%#= f.submit "Not Done" %>
-				<%# end %>
-
-			<% end %>
-	</th>
-
-</tr>
-<% end %>
-</table>
-</div><p></p>
-
-<%= will_paginate @entire_requests %><p></p>
-<button><%= link_to "New Request", new_request_path %></button>
+<center>
+	<%= will_paginate @entire_requests %><br>
+	<button><%= link_to "New Request", new_request_path %></button>
+</center>

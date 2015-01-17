@@ -1,8 +1,9 @@
 class RequestsController < ApplicationController
-	before_action:find_request, only: [:show, :edit, :update, :destroy, :done, :search] 
+	before_action:find_request, only: [:show, :edit, :update, :destroy, :done] 
 
 	def index #list all requests, ordered by actions == NOT DONE first
-		@entire_requests = Request.all.order('actions ASC')		
+		@entire_requests = Request.all.order('actions ASC')	
+			
 		# add pagination for "5" entries per page to be shown  
 		@entire_requests = @entire_requests.paginate(:page => params[:page], :per_page => 5)
 	end
