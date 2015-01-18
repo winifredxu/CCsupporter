@@ -61,4 +61,4 @@ group :development, :test do
 end
 
 # Needed by heroku to support static assetes
-gem 'rails_12factor', :production
+gem 'rails_12factor', group: :production
