@@ -8,25 +8,27 @@
 	</head>
 
 	<body>
-		<h1><%= link_to "Support Requests", requests_path %></h1>
-		<hr>
+		<div class="container">
+			<h1><%= link_to "Support Requests", requests_path %></h1>
+			<hr>
 
-		<ul class="nav nav-pills">
-		  <li role="presentation"><%= link_to "Home", requests_path %></li>
-		  <li role="presentation"><%= link_to "New request", new_request_path %></li>
-		  <li role="presentation"><%= link_to "All requests", requests_path %></li>
+			<ul class="nav nav-pills">
+			  <li role="presentation"><%= link_to "Home", requests_path %></li>
+			  <li role="presentation"><%= link_to "New request", new_request_path %></li>
+			  <li role="presentation"><%= link_to "All requests", requests_path %></li>
 
-		  <li role="presentation" style="float: right">
-				<%= form_tag(requests_path, method: "get") do %>
-			  	<%= label_tag(:search_q, "Search for:") %>
-			  	<!-- text_field_tag stores a default value of the prev search term -->
-			  	<%= text_field_tag(:search_q, params[:search_q] ) %>
-			  	<%= submit_tag("Search") %>
-				<% end %>	
-			</li>
-		</ul>
+			  <li role="presentation" style="float: right">
+					<%= form_tag(requests_path, method: "get") do %>
+				  	<%= label_tag(:search_q, "Search for:") %>
+				  	<!-- text_field_tag stores a default value of the prev search term -->
+				  	<%= text_field_tag(:search_q, params[:search_q] ) %>
+				  	<%= submit_tag("Search") %>
+					<% end %>	
+				</li>
+			</ul>
 
-		<%= yield %>
-
+			<%= yield %>
+			
+		</div>
 	</body>
 </html>

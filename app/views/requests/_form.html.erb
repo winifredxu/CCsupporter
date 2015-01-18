@@ -6,26 +6,22 @@
 	</ul>
 <% end %>
 
-<%= form_for @request do |f| %>
-	<div class="form-group">
-		<%= f.label :name %>*
-		<%= f.text_field :name %>
-	</div>
-	<p></p>
-	<div class="form-group">
-		<%= f.label :email %>*
-		<%= f.text_field :email %>
-	</div>
-	<p></p>
 
+<%= form_for @request do |f| %>
+  <div class="form-group">
+	<%= f.label :name %>*
+	<%= f.text_field :name, class: "form-control" %>
+</div>
+
+	<%= f.label :email %>*
+	<%= f.text_field :email, class: "form-control" %>
+	
 	<%#= f.label :dept %>     <!--to change the label display text -->
 	<%= f.label "Department" %>  
 	<%= f.radio_button :dept, "Sales" %> Sales
 	<%= f.radio_button :dept, "Marketing", :checked => true %> Marketing
 	<%= f.radio_button :dept, "Technical" %> Technical
 
-	<p></p>
-	<hr> 
 		<!-- trying out the radio_button_tag form helper instead below: -->
 		<!--
 		<%= label("request[dept]", "Department") %> 
@@ -35,14 +31,10 @@
 		<%= label_tag(:dept, "Marketing") %>
 		<%= radio_button_tag("request[dept]", "Technical", true) %>
 		<%= label_tag(:dept, "Technical") %>
-
 		-->
-
-	<div class="form-group">
-		<%= f.label "Message" %>
-		<%= f.text_area :body %>
-	</div>
-	<p></p>
+	
+	<%= f.label "Message" %>
+	<%= f.text_area :body, class: "form-control" %>
 	
 	<%= f.submit value: "Save"%>
 

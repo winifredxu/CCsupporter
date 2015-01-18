@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
 		# if we came via a valid param[:search_q]
 		if params[:search_q]
 			search_str = "%#{params[:search_q]}%"
-			@entire_requests = Request.where("name LIKE ? OR email LIKE ? OR dept LIKE ? OR body LIKE ?", search_str, search_str, search_str, search_str)
+			@entire_requests = Request.where("name LIKE ? OR email LIKE ? OR body LIKE ?", search_str, search_str, search_str)
 		else # show ALL requests in the DB ordered by actions == NOT DONE first
 			@entire_requests = Request.all
 		end
