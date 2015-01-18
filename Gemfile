@@ -60,3 +60,5 @@ group :development, :test do
   gem 'spring'
 end
 
+# Needed by heroku to support static assetes
+gem 'rails_12factor', :production
