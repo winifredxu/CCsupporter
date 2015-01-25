@@ -7,15 +7,17 @@
 <% end %>
 
 
-<%= form_for @request do |f| %>
+<%= form_for @request, html: { style: "width: 80%" } do |f| %>
   <div class="form-group">
-	<%= f.label :name %>*
+	<%= f.label :name %>
 	<%= f.text_field :name, class: "form-control" %>
-</div>
-
-	<%= f.label :email %>*
+	</div>
+	<div class="form-group">
+	<%= f.label :email %>
 	<%= f.text_field :email, class: "form-control" %>
-	
+	</div>
+
+	<div class="form-group">
 	<%#= f.label :dept %>     <!--to change the label display text -->
 	<%= f.label "Department" %>  
 	<%= f.radio_button :dept, "Sales" %> Sales
@@ -32,10 +34,21 @@
 		<%= radio_button_tag("request[dept]", "Technical", true) %>
 		<%= label_tag(:dept, "Technical") %>
 		-->
-	
+	</div>
+
+	<div class="form-group">
 	<%= f.label "Message" %>
 	<%= f.text_area :body, class: "form-control" %>
-	
+	</div>
 	<%= f.submit value: "Save"%>
 
 <% end %>
+
+
+<hr> test out the width of the fields<p></p>
+<form>
+<div class="form-group">
+<input class="form-control" name="blah" value="default"> 
+<input text.area="test" class="form-control">
+</div>
+</form>

@@ -38,6 +38,8 @@ gem 'bootswatch-rails'
 gem 'autoprefixer-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'will_paginate', '~>3.0.6'
+# Needed by heroku to support static assetes
+gem 'rails_12factor', group: :production
 
 group :development do 
         gem "colorize"
